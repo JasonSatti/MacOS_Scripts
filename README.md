@@ -1,4 +1,4 @@
-macOS_Scripts
+macOS_scripts
 ===========
 A repo for scripts for macOS management. 
 
