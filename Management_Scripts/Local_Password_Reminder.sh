@@ -30,8 +30,8 @@ if [ $PW_REMAINING_DAYS -gt "177" ]; then
 fi
 
 ## Notify the user that their password will expire in X day(s)
-DIALOG="Macbook login Password expiration."
+DIALOG="Macbook Login Password Expiration."
 TEXT="Password will expire in $PW_REMAINING_DAYS day(s)."
 
 ## We use Yo Notification - https://github.com/sheagcraig/yo 
-yo_scheduler -t "$DIALOG" -s "$TEXT" -o "Postpone" -b "Change" -B "open /System/Library/PreferencePanes/Accounts.prefPane/"
+yo_scheduler -t "$DIALOG" -s "$TEXT" -o "Postpone" -b "Update" -B "open /System/Library/PreferencePanes/Accounts.prefPane/"
