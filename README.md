@@ -1,6 +1,6 @@
 macOS_scripts
 ===========
-A repo for scripts for macOS management. 
+A repo for macOS management scripts. 
 
 Purpose
 -------
