@@ -1,4 +1,4 @@
-macOS_scripts
+MacOS_Scripts
 ===========
 This repository contains various scripts for managing macOS devices.
 
