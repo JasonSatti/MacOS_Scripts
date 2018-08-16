@@ -1,8 +1,7 @@
 macOS_scripts
 ===========
-A repo for macOS management scripts. 
+This repository contains various scripts for managing macOS devices.
 
 Purpose
 -------
 The purpose of this repo is to allow centralized access and version control of scripts for management of macOS devices.
-
