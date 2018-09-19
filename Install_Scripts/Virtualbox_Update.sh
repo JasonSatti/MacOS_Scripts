@@ -3,7 +3,7 @@
 ## Dakr-xv
 
 ## Get the latest VirtualBox version from their website
-LATEST_VIRTUALBOX_VERSION=$(curl https://www.virtualbox.org/wiki/Downloads | grep "platform packages" | awk '{ print $5 }')
+LATEST_VIRTUALBOX_VERSION=$(curl -s https://www.virtualbox.org/wiki/Downloads | grep "platform packages" | awk '{ print $5 }')
 
 ## Get the current Virtualbox version installed on the device
 CURRENT_VIRTUALBOX_VERSION=$(virtualbox --help | grep "Oracle VM VirtualBox Manager" | awk '{print $5}') 
@@ -17,7 +17,7 @@ else
 fi
 
 ## Get the link for latest Virtualbox download
-VIRTUALBOX_DOWNLOAD=$(curl -L https://www.virtualbox.org/wiki/Downloads | grep "OS X hosts" | awk '{print $3}' | cut -f2 -d'"' | cut -f1 -d'"'
+VIRTUALBOX_DOWNLOAD=$(curl -s -L https://www.virtualbox.org/wiki/Downloads | grep "OS X hosts" | awk '{print $3}' | cut -f2 -d'"' | cut -f1 -d'"'
 
 ## Name of the DMG file that will be downloaded
 VIRTUALBOX_DMG=$(echo $VIRTUALBOX_DOWNLOAD | cut -f6 -d"/")
