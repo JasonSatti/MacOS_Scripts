@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Remove a n extenstion for Chrome that is installed on a device
+## Remove an extenstion for Chrome that is installed on a device
 ## Dakr-xv
 
 ## List of extentions to check in all Chrome user profiles
