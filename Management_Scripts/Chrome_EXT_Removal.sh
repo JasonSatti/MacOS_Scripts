@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Remove an extenstion for Chrome that is installed on a device
+## Remove a n extenstion for Chrome that is installed on a device
 ## Dakr-xv
 
 ## List of extentions to check in all Chrome user profiles
@@ -7,7 +7,10 @@ EXTENSIONS=("mdanidgdpmkimeiiojknlnekblgmpdll")
 
 ## Message for user when they are out of compliance
 MSG_TITLE='Boomerang Extension Disabled'
-MSG_NOTICE='No longer permitted.'
+MSG_NOTICE='No longer permitted by Addepar.'
+MSG_INFO='Please visit the Confluence article.'
+CONF_PAGE='https://addepar.atlassian.net/wiki/spaces/IT/pages/469933230/How+To+Not+Use+Boomerang+For+Gmail'
+BUTTON='Confluence'
 
 ## Get the logged in user
 LOGGED_IN_USER=$(/usr/bin/python -c 'from SystemConfiguration import\
@@ -23,21 +26,22 @@ IFS=$'\n' ## This cmd allows for the bash shell to recognize the whitespace in a
 DIRECTORY="/Users/$LOGGED_IN_USER/Library/Application Support/Google/Chrome"
 
 ## Get a list of all Chrome profiles on the device
-PROFILES=$(ls $DIRECTORY | grep "Profile " )
+PROFILES=$(ls "$DIRECTORY" | grep "Profile " )
 
 ## Full path to Yo Scheduler
 YO='/usr/local/bin/yo_scheduler'
 
-## Check Default Profile or ALL User Profiles
+## Check Default Profile and ALL User Profiles
 for PRF in $PROFILES; do 
     for EXT in "${EXTENSIONS[@]}"; do
-        if [ -d "$DIRECTORY/Default/" ];then
+        if [[ ( -d "$DIRECTORY/Default/Extensions/$EXT" ) ||\
+         ( -d "$DIRECTORY/$PRF/Extensions/$EXT" )]]; then 
             rm -rf "$DIRECTORY/Default/Extensions/$EXT"
-        elif [ -d "$DIRECTORY/$PRF/" ];then 
             rm -rf "$DIRECTORY/$PRF/Extensions/$EXT"   
         fi
     done;
 done;
 
 ## Send User Removal Notification
-su -l "$LOGGED_IN_USER" -c "'$YO' -t '$MSG_TITLE' -s '$MSG_NOTICE'"
+su -l "$LOGGED_IN_USER" -c ""$YO" -t '$MSG_TITLE' -s '$MSG_NOTICE'\
+ -n '$MSG_INFO' -a '$CONF_PAGE' -b '$BUTTON'"
