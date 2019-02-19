@@ -34,7 +34,9 @@ if [ -f $VIOLATION_LOG ]; then
     VIOLATION_COUNT=$(head -1 $VIOLATION_LOG)
 fi
 
-## Make sure Idle Time is in allowed range
+## Make sure Idle Time is in allowed range and notify user
+## Yo notifications 
+## https://github.com/sheagcraig/yo
 if [ "$IDLE_TIME" -le "0" ] || [ "$IDLE_TIME" -gt "$MAX_TIME" ]; then
     sudo -u $LOGGED_IN_USER /usr/bin/defaults -currentHost write "$SAVER_PREFS" "$SAVER_SETTING" -int "$DEFAULT_TIME"
     su -l "$LOGGED_IN_USER" -c "/usr/local/bin/yo_scheduler -t '$MSG_TITLE' -s '$MSG_NOTICE' -n '$MSG_INFO'"
