@@ -2,7 +2,6 @@
 ## Local Password Change Reminder
 ## Dakr-xv
 
-## Get the username of the logged in user and the current date
 ## Apple approved way to get the currently logged in user
 LOGGED_IN_USER=`/usr/bin/python -c 'from SystemConfiguration import SCDynamicStoreCopyConsoleUser; import sys;\
  username = (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0];\
@@ -33,5 +32,6 @@ fi
 DIALOG="Macbook Login Password Expiration."
 TEXT="Password will expire in $PW_REMAINING_DAYS day(s)."
 
-## We use Yo Notification - https://github.com/sheagcraig/yo 
+## We use Yo Notification
+## https://github.com/sheagcraig/yo 
 yo_scheduler -t "$DIALOG" -s "$TEXT" -o "Postpone" -b "Update" -B "open /System/Library/PreferencePanes/Accounts.prefPane/"
