@@ -12,7 +12,7 @@ VIRTUALBOX_DMG=$(echo $VIRTUALBOX_DOWNLOAD | cut -f6 -d"/")
 curl -O $VIRTUALBOX_DOWNLOAD
 
 ## Mount the DMG
-sudo hdiutil attach $VIRTUALBOX_DMG
+sudo hdiutil attach $VIRTUALBOX_DMG -nobrowse
 
 ## Install the PKG
 sudo installer -package /Volumes/VirtualBox/VirtualBox.pkg -target /
