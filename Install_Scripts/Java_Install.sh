@@ -15,7 +15,7 @@ JAVA_VER=$(echo $JAVA_DMG | cut -f2 -d'-' | cut -f2 -d'u')
 curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" $JAVA_DOWNLOAD > $JAVA_DMG
 
 ## Mount the DMG
-sudo hdiutil attach $JAVA_DMG
+sudo hdiutil attach $JAVA_DMG -nobrowse
 
 ## Install the PKG
 sudo installer -pkg "/Volumes/Java 8 Update $JAVA_VER/Java 8 Update $JAVA_VER.app/Contents/Resources/JavaAppletPlugin.pkg" -target /
