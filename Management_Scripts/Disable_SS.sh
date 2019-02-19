@@ -28,10 +28,8 @@ if [ -f $RUN_LOG ]; then
     USAGE_COUNT=$(head -1 $RUN_LOG)
 fi
 
-## Send User a Notification
-## We can use a 'sudo -u' cmd here instead of 'su -l' as this policy will be run 
-## via Self Service and NOT via Recurring Check-In so it will be outside of the 
-## launchd enviroment
+## Send User a Notification via Yo Notificaation
+## https://github.com/sheagcraig/yo
 sudo -u $LOGGED_IN_USER /usr/local/bin/yo_scheduler -t "$MSG_TITLE"
 
 ## Update Usage Count and Log results of latest run
