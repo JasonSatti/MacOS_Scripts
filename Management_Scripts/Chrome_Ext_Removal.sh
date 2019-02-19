@@ -5,10 +5,6 @@
 ## List of extentions to check in all Chrome user profiles
 EXTENSIONS=("mdanidgdpmkimeiiojknlnekblgmpdll") 
 
-## Message for user when they are out of compliance
-MSG_TITLE='Boomerang Extension Disabled'
-MSG_NOTICE='No longer permitted.'
-
 ## Get the logged in user
 LOGGED_IN_USER=$(/usr/bin/python -c 'from SystemConfiguration import\
  SCDynamicStoreCopyConsoleUser;import sys; username = \
@@ -25,9 +21,6 @@ DIRECTORY="/Users/$LOGGED_IN_USER/Library/Application Support/Google/Chrome"
 ## Get a list of all Chrome profiles on the device
 PROFILES=$(ls "$DIRECTORY" | grep "Profile " )
 
-## Full path to Yo Scheduler
-YO='/usr/local/bin/yo_scheduler'
-
 ## Check Default Profile and ALL User Profiles
 for PRF in $PROFILES; do 
     for EXT in "${EXTENSIONS[@]}"; do
@@ -38,6 +31,3 @@ for PRF in $PROFILES; do
         fi
     done;
 done;
-
-## Send User Removal Notification
-su -l "$LOGGED_IN_USER" -c ""$YO" -t '$MSG_TITLE' -s '$MSG_NOTICE'
