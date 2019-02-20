@@ -3,22 +3,25 @@
 ## Dakr-xv
 
 ## Name of the DMG file that will be downloaded
-GOOGLE_DMG="googlechrome.dmg"
+CHROME_DMG="googlechrome.dmg"
+
+## Link to download the latest Google Chrome
+CHROME_DOWNLOAD="https://dl.google.com/chrome/mac/stable/GGRO/$CHROME_DMG"
 
 ## Download the latest version of Google Chrome into /tmp/
-curl -s https://dl.google.com/chrome/mac/stable/GGRO/$GOOGLE_DMG -o /tmp/$GOOGLE_DMG
+curl -s $CHROME_DOWNLOAD -o /tmp/$CHROME_DMG
 
 ## Mount the DMG
-hdiutil attach /tmp/$GOOGLE_DMG -nobrowse
+hdiutil attach /tmp/$CHROME_DMG -nobrowse
 
 ## Copy contents of the Google Chrome DMG file to /Applications/
 cp -pPR /Volumes/Google\ Chrome/Google\ Chrome.app /Applications/
 
 ## Get the Volume Name
-CHROME_VOLUME="$(hdiutil info | grep "/Volumes/Google Chrome" | awk '{ print $1 }')"
+CHROME_VOLUME=$(hdiutil info | grep "/Volumes/Google Chrome" | awk '{ print $1 }')
 
 ## Unmount the Volume
 hdiutil detach $CHROME_VOLUME
 
 ## Remove the DMG
-rm -f /tmp/$GOOGLE_DMG
+rm -f /tmp/$CHROME_DMG
