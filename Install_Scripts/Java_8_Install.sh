@@ -4,7 +4,7 @@
 
 ## Get the link for latest Java download
 JAVA_DOWNLOAD=$(curl -s https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html\
- | grep "macosx-x64.dm" | awk '{print $9}' | cut -f5 -d '"' | grep "8u202")
+ | grep "8u202-macosx-x64.dmg" | awk '{print $9}' | cut -f5 -d '"' | grep "8u202")
 
 ## Name of the DMG file that will be downloaded
 JAVA_DMG=$(echo $JAVA_DOWNLOAD | cut -f9 -d'/')
