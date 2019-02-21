@@ -2,11 +2,11 @@
 ## Google Chrome Installation Script
 ## Dakr-xv
 
-## Name of the DMG file that will be downloaded
-CHROME_DMG="googlechrome.dmg"
-
 ## Link to download the latest Google Chrome
-CHROME_DOWNLOAD="https://dl.google.com/chrome/mac/stable/GGRO/$CHROME_DMG"
+CHROME_DOWNLOAD="https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
+
+## Name of the DMG file that will be downloaded
+CHROME_DMG=$(echo $CHROME_DOWNLOAD | cut -f8 -d'/')
 
 ## Download the latest version of Google Chrome into /tmp/
 curl -s $CHROME_DOWNLOAD -o /tmp/$CHROME_DMG
