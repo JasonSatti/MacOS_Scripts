@@ -6,7 +6,7 @@ from datetime import date, datetime
 
 import requests
 
-# Returns the difference between current date
+# Returns 182 days minus the difference between current date
 # and the date that the password was last set
 def calculate_date(password_date):
     password_date_split = password_date.split('T')[0].split('-')
