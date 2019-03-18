@@ -8,8 +8,6 @@ import requests
 
 # Returns the difference between current date
 # and the date that the password was last set
-
-
 def calculate_date(password_date):
     password_date_split = password_date.split('T')[0].split('-')
     password_date_ints = map(int, password_date_split)
