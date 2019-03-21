@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Dakr=xv
 import config
 import json
 from datetime import date, datetime
@@ -9,9 +8,9 @@ import requests
 def calculate_date(password_date):
     """Return the number of days until the password will expire.
 
-    Expiration time set to 6 months (182 days)
+    Expiration time set to 6 months (182 days).
 
-    Calculate current date - password set date then subtract from 182
+    Calculate current date - password set date then subtract from 182.
     """
     password_date_split = password_date.split('T')[0].split('-')
     password_date_ints = map(int, password_date_split)
@@ -22,6 +21,46 @@ def calculate_date(password_date):
     return (182 - days_set.days)
 
 
+def return_token(oauth_url, client_id, client_secret):
+    """Return API access token from Onelogin."""
+    r = requests.post(oauth_url,
+                      auth=(client_id, client_secret),
+                      json={"grant_type": "client_credentials"}
+                      )
+
+    return r.json()['access_token']
+
+
+def get_user_emails(url, headers, removal_set):
+    """Return all user emails from Onelogin who have logged in before.
+
+    Removes all users added to the removal_set above before returning emails.
+
+    Follows all pagination links for complete list.
+    """
+    user_emails = set()
+    r = requests.get(url, headers=headers)
+    while True:
+        for user in r.json()['data']:
+            if not (user['last_login']) is None:
+                user_emails.add(user['email'])
+        if 'next' in r.links:
+            url = r.links['next']['url']
+            r = requests.get(url, headers=headers)
+        else:
+            break
+
+    return user_emails.difference(removal_set)
+
+
+def get_password_date(prime_url, headers, email):
+    """Return date of last password change for user."""
+    r = requests.get(prime_url, headers=headers,
+                     params={'email': str(email)})
+
+    return r.json()['data'][0]['password_changed_at']
+
+
 def main():
     """Return all users who's password will expire in 7 days.
 
@@ -29,57 +68,18 @@ def main():
 
     Calculate password days remaining per user.
     """
-    # API Credentials from Onelogin (READ ONLY)
-    # Save the API Credentials in a config file to import
-    client_id = config.client_id
-    client_secret = config.client_secret
-
-    # Request Token to make Onelogin API calls
-    r = requests.post('https://api.us.onelogin.com/auth/oauth2/v2/token',
-                      auth=(client_id, client_secret),
-                      json={"grant_type": "client_credentials"}
-                      )
-
-    # Token, Header and URL info to pass in my request
-    token = r.json()['access_token']
-    header = {'Authorization': 'Bearer: {}'.format(token)}
-    prime_url = 'https://api.us.onelogin.com/api/1/users'
-    url = 'https://api.us.onelogin.com/api/1/users'
-
-    # Initialize sets
-    user_emails = set()
-    no_logins = set()
-    removal_list = ['user@company.com']
-
-    # Request all Onelogin users
-    # Add all users to user_emails set
-    # Add all users who haven't logged in yet to no_logins set
-    r = requests.get(url, headers=header)
-    while True:
-        for user in r.json()['data']:
-            user_email = (user['email'])
-            user_emails.add(user_email)
-            if (user['last_login']) is None:
-                no_logins.add(user_email)
-        if 'next' in r.links:
-            url = r.links['next']['url']
-            r = requests.get(url, headers=header)
-        else:
-            break
-
-    # Remove all users who haven't logged in yet from user_emails
-    user_emails = user_emails.difference(no_logins)
-
-    # Remove these users manually
-    user_emails = user_emails.difference(removal_list)
-
+    # Save the Onelogin API Credentials in a config file to import
+    token = return_token(
+        config.oauth_url, config.client_id, config.client_secret)
+    headers = {'Authorization': 'Bearer: {}'.format(token)}
+    prime_url = config.url
+    url = config.url
+    removal_set = ['user@company.com']
     # Loop through email array to get password set date for each user
     # Calculate days until password expiration
     # Notify if password will expire within 7 days
-    for user in user_emails:
-        r = requests.get(prime_url, headers=header,
-                         params={'email': str(user)})
-        password_date = r.json()['data'][0]['password_changed_at']
+    for user in get_user_emails(url, headers, removal_set):
+        password_date = get_password_date(prime_url, headers, user)
         days_left = calculate_date(password_date)
         if (days_left <= 7):
             print '{} days till expiration for {}'.format(days_left, user)
