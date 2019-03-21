@@ -68,7 +68,7 @@ def main():
 
     Calculate password days remaining per user.
     """
-    # Save the Onelogin API Credentials in a config file to import
+    # Save the Onelogin Oath URL, URL and API creds in a config file to import
     token = return_token(
         config.oauth_url, config.client_id, config.client_secret)
     headers = {'Authorization': 'Bearer: {}'.format(token)}
