@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Download Amazon s3 Bucket file
-## Dakr-xv
+## Jason Satti
 
 ## Location of file locally
 LOCAL_PATH="path where you want the file to be downloaded"
