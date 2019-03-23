@@ -18,4 +18,4 @@ The purpose of this repo is to allow centralized access and version control of s
 
 
 ## Contact
-Find me in #MacAdmins - Dakr
+Find me in #MacAdmins - Jason Satti
