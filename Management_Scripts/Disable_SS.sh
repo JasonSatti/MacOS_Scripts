@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Disable Screensaver for 1 hour
-## Dakr-xv
+## Jason Satti
 
 ## Get the logged in user
 LOGGED_IN_USER=$(/usr/bin/python -c 'from SystemConfiguration import\

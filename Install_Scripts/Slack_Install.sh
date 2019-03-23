@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Slack Installation Script
-## Dakr-xv
+## Jason Satti
 
 ## Get the link for latest Slack download
 DOWNLOAD_URL="https://slack.com/ssb/download-osx"

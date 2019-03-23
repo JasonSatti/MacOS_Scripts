@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## VirtualBox Installation Script
-## Dakr-xv
+## Jason Satti
 
 ## Get the link for latest Virtualbox download
 VIRTUALBOX_DOWNLOAD=$(curl -s -L https://www.virtualbox.org/wiki/Downloads |\

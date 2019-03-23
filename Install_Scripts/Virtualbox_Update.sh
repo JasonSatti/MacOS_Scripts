@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## VirtualBox Update Script  
-## Dakr-xv
+## Jason Satti
 
 ## Get the latest VirtualBox version from their website
 LATEST_VIRTUALBOX_VERSION=$(curl -s https://www.virtualbox.org/wiki/Downloads |\

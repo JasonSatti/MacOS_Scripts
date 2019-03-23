@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Java 8 Installation Script
-## Dakr-xv
+## Jason Satti
 
 ## Get the link for latest Java download
 JAVA_DOWNLOAD=$(curl -s https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html\

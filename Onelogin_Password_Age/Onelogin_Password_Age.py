@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Daky-xv
+# Jason Satti
 import config
 import json
 from datetime import date, datetime
