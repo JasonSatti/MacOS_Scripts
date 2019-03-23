@@ -4,7 +4,7 @@
 #fwstatus=$( defaults read /Library/Preferences/com.apple.alf globalstate )
 fws=("/usr/libexec/ApplicationFirewall/socketfilterfw --getblockall")
 
-#if [[ $fwstatus = 0 ]]; 
+#if [[ $fwstatus = 0 ]];
 #then
 #	echo "<result>Off</result>"
 #else

@@ -7,7 +7,7 @@ LOGGED_IN_USER=$(/usr/bin/python -c 'from SystemConfiguration import\
  SCDynamicStoreCopyConsoleUser;import sys; username = \
  (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0];username\
  = [username,""][username in [u"loginwindow", None, u""]]; sys.stdout.write\
- (username + "\n");')
+(username + "\n");')
 
 LOG_PATH="/Users/$LOGGED_IN_USER/.jamf" ## Directory where log is stored
 mkdir -p "$LOG_PATH" ## Ensure logging directory exists

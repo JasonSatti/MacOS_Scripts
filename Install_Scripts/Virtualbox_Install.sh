@@ -4,7 +4,7 @@
 
 ## Get the link for latest Virtualbox download
 VIRTUALBOX_DOWNLOAD=$(curl -s -L https://www.virtualbox.org/wiki/Downloads |\
- grep "OS X hosts" | awk '{print $3}' | cut -f2 -d'"')
+grep "OS X hosts" | awk '{print $3}' | cut -f2 -d'"')
 
 ## Name of the DMG file that will be downloaded
 VIRTUALBOX_DMG=$(echo $VIRTUALBOX_DOWNLOAD | cut -f6 -d"/")
