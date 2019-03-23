@@ -16,7 +16,7 @@ LOGGED_IN_USER=$(/usr/bin/python -c 'from SystemConfiguration import\
  SCDynamicStoreCopyConsoleUser;import sys; username = \
  (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0];username\
  = [username,""][username in [u"loginwindow", None, u""]]; sys.stdout.write\
- (username + "\n");')
+(username + "\n");')
 
 ## The screen saver preferences file
 SAVER_PREFS="/Users/$LOGGED_IN_USER/Library/Preferences/ByHost/com.apple.screensaver"
@@ -35,12 +35,12 @@ if [ -f $VIOLATION_LOG ]; then
 fi
 
 ## Make sure Idle Time is in allowed range and notify user
-## Yo notifications 
+## Yo notifications
 ## https://github.com/sheagcraig/yo
 if [ "$IDLE_TIME" -le "0" ] || [ "$IDLE_TIME" -gt "$MAX_TIME" ]; then
     sudo -u $LOGGED_IN_USER /usr/bin/defaults -currentHost write "$SAVER_PREFS" "$SAVER_SETTING" -int "$DEFAULT_TIME"
     su -l "$LOGGED_IN_USER" -c "/usr/local/bin/yo_scheduler -t '$MSG_TITLE' -s '$MSG_NOTICE' -n '$MSG_INFO'"
-    ((VIOLATION_COUNT++)); 
+    ((VIOLATION_COUNT++));
 fi
 
 ## Log results of latest run
