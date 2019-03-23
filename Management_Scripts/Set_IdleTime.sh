@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Set Screen Idle Time if it is out of scope
-## Dakr-xv
+## Jason Satti
 
 VIOLATION_LOG="set_idletime.log" ## Where to store violation count and run dates
 MAX_TIME=$((5 * 60)) ## 5 minutes
