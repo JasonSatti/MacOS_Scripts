@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Local Password Change Reminder
-## Dakr-xv
+## Jason Satti
 
 ## Apple approved way to get the currently logged in user
 LOGGED_IN_USER=`/usr/bin/python -c 'from SystemConfiguration import SCDynamicStoreCopyConsoleUser; import sys;\
