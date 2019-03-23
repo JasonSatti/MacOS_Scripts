@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Google Chrome Installation Script
-## Dakr-xv
+## Jason Satti
 
 ## Link to download the latest Google Chrome
 CHROME_DOWNLOAD="https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
