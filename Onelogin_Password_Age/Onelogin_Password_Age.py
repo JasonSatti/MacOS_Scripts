@@ -33,17 +33,19 @@ def return_token(oauth_url, client_id, client_secret):
 
 
 def get_user_emails(url, headers, removal_set):
-    """Return all user emails from Onelogin who have logged in before.
+    """Return all user emails from Onelogin.
 
-    Removes all users added to the removal_set above before returning emails.
+    Return all users who have logged in before and are in an active status.
 
-    Follows all pagination links for complete list.
+    Remove all users added to the removal_set above before returning emails.
+
+    Follow all pagination links for complete list.
     """
     user_emails = set()
     r = requests.get(url, headers=headers)
     while True:
         for user in r.json()['data']:
-            if not (user['last_login']) is None:
+            if not (user['last_login']) is None and (user['status']) is 1:
                 user_emails.add(user['email'])
         if 'next' in r.links:
             url = r.links['next']['url']
@@ -75,7 +77,7 @@ def main():
     headers = {'Authorization': 'Bearer: {}'.format(token)}
     prime_url = config.url
     url = config.url
-    removal_set = ['user@company.com']
+    removal_set = config.removal_set
     # Loop through email array to get password set date for each user
     # Calculate days until password expiration
     # Notify if password will expire within 7 days
