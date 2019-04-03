@@ -17,7 +17,6 @@ class OneloginApi(object):
         self.token = self.return_token()
         self.url = url
         self.removal_set = removal_set
-        self.user_emails = self.get_user_emails()
         self.password_age_limit = password_age_limit
 
     def return_token(self):
