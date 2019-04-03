@@ -91,12 +91,12 @@ class OneloginApi(object):
 
 def main():
     """Return all users who's password will expire in 7 days."""
-    addepar_onelogin = OneloginApi(config.oauth_url,
+    comapany_onelogin = OneloginApi(config.oauth_url,
                                    config.url, config.client_id,
                                    config.client_secret,
                                    removal_set=config.removal_set)
-    for user in addepar_onelogin.get_user_emails():
-        days_left = addepar_onelogin.calculate_date(user)
+    for user in comapany_onelogin.get_user_emails():
+        days_left = comapany_onelogin.calculate_date(user)
         if days_left <= 7:
             print(F'{days_left} days till expiration for {user}')
 
