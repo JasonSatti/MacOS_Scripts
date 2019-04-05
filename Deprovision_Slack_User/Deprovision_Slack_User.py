@@ -47,8 +47,8 @@ class SlackApi(object):
                 if user_email == email['value']:
                     if not active_only or user['active']:
                         matches.add(user['id'])
-        msg = F'Multiple Slack accounts share this email:{user_email}!'
-        msg += 'This is outside the scope of this script.'
+        msg = F'Multiple Slack accounts share this email:{user_email}! '
+        msg += 'This is outside the scope of this script. '
         msg += 'Please verify Slack account manually.'
         if len(matches) == 0:
             return None
