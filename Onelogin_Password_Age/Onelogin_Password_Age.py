@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#Jason Satti
+# Jason Satti
 from datetime import date, datetime
 import requests
 
