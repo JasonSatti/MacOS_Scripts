@@ -1,6 +1,6 @@
 MacOS tools and scripts
 ===========
-This repo contains the tools and scripts that I create to manage macOS client devices.
+This repo contains the tools and scripts that I create to manage macOS client devices and external APIs.
 
 Purpose
 -------
