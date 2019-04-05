@@ -65,7 +65,7 @@ class SlackApi(object):
         """
         id = self.find_user_by_email(user_email)
         url = F'{self.url}/{id}'
-        if id == None:
+        if id is None:
             msg = F'{user_email} is not an active user.'
             print(msg, file=sys.stderr)
             return False
