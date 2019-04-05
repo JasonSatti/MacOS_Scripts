@@ -38,7 +38,7 @@ class SlackApi(object):
         :exception: AssertionError - If email is associated with multiple IDs
         """
         total_users = self.total_slack_users()
-        url = F'{self.url}?count={self.total_users}'
+        url = F'{self.url}?count={total_users}'
         r = requests.get(url, data=self.payload, headers=self.headers)
         user_list = r.json()['Resources']
         matches = set()  # ID of every user who shares email address
