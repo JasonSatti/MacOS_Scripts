@@ -17,6 +17,7 @@ The purpose of this repo is to allow centralized access and version control of s
 * Management_Scripts - Contains scripts to manage macOS devices.
 * Onelogin_Password_Age - Contains scripts to manage Onelogin user account passwords.
 * Sync_Jamf_Scripts - Contains scripts to locally download all scripts in a Jamf instance.
+* Deprovision_Slack_User - Contains scripts to deprovision a user in a Slack workspace.
 
 ## Contact
 Find me in #MacAdmins - Jason Satti
