@@ -19,7 +19,6 @@ class SlackApi(object):
             'Authorization': F'Bearer {token}',
             'cache-control': 'no-cache',
         }
-        self.total_users = self.total_slack_users()
 
     def total_slack_users(self):
         """Get total number of user accounts in the Slack workspace.
@@ -38,6 +37,7 @@ class SlackApi(object):
         :return: (String) User ID or None if email not found
         :exception: AssertionError - If email is associated with multiple IDs
         """
+        total_users = self.total_slack_users()
         url = F'{self.url}?count={self.total_users}'
         r = requests.get(url, data=self.payload, headers=self.headers)
         user_list = r.json()['Resources']
