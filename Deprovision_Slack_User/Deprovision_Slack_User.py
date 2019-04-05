@@ -45,7 +45,7 @@ class SlackApi(object):
         for user in user_list:
             for email in user['emails']:
                 if user_email == email['value']:
-                    if (active_only is False) or user['active']:
+                    if not active_only or user['active']:
                         matches.add(user['id'])
         msg = F'Multiple Slack accounts share this email:{user_email}!'
         msg += 'This is outside the scope of this script.'
