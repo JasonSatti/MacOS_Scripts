@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # Jason Satti
+import argparse
 import sys
 
 import requests
@@ -34,6 +35,7 @@ class SlackApi(object):
         """Find the Slack user ID associated with an email.
 
         :param user_email: email address of the target user
+        :param active_only: only find active slack users
         :return: (String) User ID or None if email not found
         :exception: AssertionError - If email is associated with multiple IDs
         """
@@ -82,8 +84,14 @@ class SlackApi(object):
 
 
 def main():
+    """Get user email address from CLI input and deprovision from Slack"""
+    parser = argparse.ArgumentParser(description='Deprovision Slack account.')
+    parser.add_argument('email', type=str,
+                        help='Email address of user to be deprovisioned.')
+    args = parser.parse_args()
+
     slack = SlackApi(config.token)
-    slack.delete_user(config.email, dryrun=False)
+    slack.delete_user(args.email)
 
 
 if __name__ == '__main__':
