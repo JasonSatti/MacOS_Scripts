@@ -65,9 +65,9 @@ class SlackApi(object):
         :param dryrun: Find user but do not delete user
         :return: (Bool) True if user was actually deleted
         """
-        id = self.find_user_by_email(user_email)
-        url = F'{self.url}/{id}'
-        if id is None:
+        user_id = self.find_user_by_email(user_email)
+        url = F'{self.url}/{user_id}'
+        if user_id is None:
             msg = F'{user_email} is not an active user.'
             print(msg, file=sys.stderr)
             return False
