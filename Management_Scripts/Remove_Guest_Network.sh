@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-
 # remove_guest_network: Verify corp network exists then remove guest network.
 # Used to verify employees stay connected to corp network
+# Jason Satti
 
 # Set Corp and Guest network SSID names
 CORP_NETWORK="Corp"
