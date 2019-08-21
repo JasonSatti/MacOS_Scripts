@@ -11,7 +11,7 @@ chrome_installed=$(/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrom
     awk '{print $3}')
 
 # Get the latest version of Google Chrome
-chrome_latest=$(curl https://www.whatismybrowser.com/guides/the-latest-version/chrome |
+chrome_latest=$(curl -s https://www.whatismybrowser.com/guides/the-latest-version/chrome |
     grep -A1 "Chrome on <strong>macOS</strong>" | tail -n1 | sed -e 's/[A-Za-z</>]*//g' |
     sed -e 's/^[ \t]*//')
 
